@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx:1.17
+    container_name: nginx
+    depends_on:
+      - node
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/config:/etc/nginx/conf.d
+      - ./docker/nginx/log:/var/log/nginx
+    ports:
+      - '127.0.0.1:80:80'
+
+  node:
+    image: node:12.4
+    container_name: node
+    command: node --inspect=0.0.0.0 app.js
+    ports:
+      - '9229:9229'
+    depends_on:
+      - mongo
+    working_dir: /app
+    volumes:
+      - ./:/app
+
+  mongo:
+    image: mongo:4.0
+    container_name: mongo
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  default:
+    name: websocket-chat-net
+
+volumes:
+  mongo-data:
+    name: mongo-data

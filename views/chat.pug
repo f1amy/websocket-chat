@@ -1,0 +1,21 @@
+extends layout
+
+block additional-head-tags
+  script(src="/javascripts/chat.js")
+
+block content
+  div(class="container mt-4 mb-5")
+    div(id="chat-block", class="row border rounded-lg")
+      nav(class="col-3 border-right bg-light")
+        h3(class="mt-3") Channels
+        div(id="channels-list", class="nav nav-pills flex-column",
+          role="tablist", aria-orientation="vertical")
+      div(class="col")
+        div(id="channel-row", class="row")
+          div(id="channel-content", class="tab-content col")
+            div(class="tab-pane fade active show", role="tabpanel")
+              h3(class="text-center mt-5") ← Please select a channel
+        div(class="row bg-light border-top")
+          form(id="message-form", action="/chat/message/send", method="post", class="form-inline col py-2")
+            input(type="text", class="form-control col mr-2", placeholder="Message")
+            input(type="submit", class="btn btn-primary col-auto", value="Send")

@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(class="container mt-4")
+    form(action="/", method="post", class="col-6")
+      h3 Please choose a username
+      div(class="form-group")
+        label(for="username-input") Username
+        input(id="username-input", class="form-control",
+          type="text", name="username", required)
+        div(class="invalid-feedback")= invalidUsernameMessage
+      input(type="submit", value="Submit", class="btn btn-primary")
