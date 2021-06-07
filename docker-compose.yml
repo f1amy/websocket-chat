@@ -12,7 +12,7 @@ services:
       - '80:80'
 
   node:
-    image: node:12
+    image: node:14
     command: node --inspect=0.0.0.0 app.js
     ports:
       - '9229:9229'
