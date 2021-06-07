@@ -13,7 +13,7 @@ services:
 
   node:
     image: node:14
-    command: node --inspect=0.0.0.0 app.js
+    command: bash -c "npm i && node --inspect=0.0.0.0 app.js"
     ports:
       - '9229:9229'
     depends_on:
